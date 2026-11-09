@@ -1,0 +1,36 @@
+{% extends 'tienda/base.html' %}
+
+{% block titulo %}Eliminar registro | Motos Lujo{% endblock %}
+
+{% block contenido %}
+<section class="formulario-seccion">
+
+    <div class="formulario-caja confirmacion">
+        <p class="marca">CONFIRMAR ACCIÓN</p>
+
+        <h1 class="titulo-seccion">¿Deseas eliminar este registro?</h1>
+
+        <p>
+            Estás a punto de eliminar:
+            <strong>{{ obj }}</strong>
+        </p>
+
+        <p>Esta acción no se puede deshacer.</p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="acciones-formulario">
+                <button type="submit" class="enlace-eliminar">
+                    Sí, eliminar
+                </button>
+
+                <a href="{% url volver %}" class="boton boton-secundario">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+
+</section>
+{% endblock %}

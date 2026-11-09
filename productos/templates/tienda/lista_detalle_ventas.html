@@ -1,0 +1,62 @@
+{% extends 'tienda/base.html' %}
+
+{% block titulo %}Detalle de ventas | Motos Lujo{% endblock %}
+
+{% block contenido %}
+<section class="seccion-listado">
+
+    <div class="encabezado-listado">
+        <div>
+            <p class="marca">INFORMACIÓN DE VENTAS</p>
+            <h1 class="titulo-seccion">Detalle de ventas</h1>
+            <p>Consulta los productos incluidos en cada venta.</p>
+        </div>
+
+        <a href="{% url 'lista_venta' %}" class="boton">
+            Volver a ventas
+        </a>
+    </div>
+
+    <div class="tabla-contenedor">
+        <div class="tabla-scroll">
+            <table class="tabla-ventas">
+                <thead>
+                    <tr>
+                        <th>N.º de venta</th>
+                        <th>Cliente</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio unitario</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for detalle in lista %}
+                    <tr>
+                        <td>{{ detalle.venta.id }}</td>
+                        <td>
+                            {{ detalle.venta.cliente.nombre }}
+                            {{ detalle.venta.cliente.apellido }}
+                        </td>
+                        <td>{{ detalle.producto.nombre }}</td>
+                        <td>{{ detalle.cantidad }}</td>
+                        <td>${{ detalle.precio_unitario|floatformat:2 }}</td>
+                        <td class="subtotal">
+                            ${{ detalle.subtotal|floatformat:2 }}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="sin-datos">
+                            No hay detalles de ventas registrados.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

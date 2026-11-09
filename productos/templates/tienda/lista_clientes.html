@@ -1,0 +1,77 @@
+{% extends 'tienda/base.html' %}
+
+{% block titulo %}Clientes | Motos Lujo{% endblock %}
+
+{% block contenido %}
+<section class="seccion-listado">
+
+    <div class="encabezado-listado">
+        <div>
+            <p class="marca">NUESTROS CLIENTES</p>
+            <h1 class="titulo-seccion">Clientes</h1>
+            <p>Consulta y administra los clientes de la tienda.</p>
+        </div>
+
+        <a href="{% url 'crear_cliente' %}" class="boton">
+            + Nuevo cliente
+        </a>
+    </div>
+
+    <form method="get" class="buscador">
+        <input
+            type="text"
+            name="q"
+            placeholder="Buscar cliente por nombre..."
+            value="{{ q|default:'' }}"
+        >
+        <button type="submit" class="boton">Buscar</button>
+    </form>
+
+    <div class="tabla-contenedor">
+        <div class="tabla-scroll">
+            <table class="tabla-ventas">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Documento</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for c in lista %}
+                    <tr>
+                        <td>{{ c.nombre }}</td>
+                        <td>{{ c.apellido }}</td>
+                        <td>{{ c.documento }}</td>
+                        <td>{{ c.correo }}</td>
+                        <td>{{ c.telefono }}</td>
+                        <td>
+                            <div class="acciones">
+                                <a href="{% url 'editar_cliente' c.pk %}" class="enlace-editar">
+                                    Editar
+                                </a>
+
+                                <a href="{% url 'eliminar_cliente' c.pk %}" class="enlace-eliminar">
+                                    Eliminar
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="sin-datos">
+                            Todavía no hay clientes registrados.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

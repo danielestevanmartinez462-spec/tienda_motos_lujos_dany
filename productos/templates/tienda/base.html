@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Motos Lujo{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'productos/css/estilos.css' %}?v=10">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<header class="navbar">
+    <a href="{% url 'inicio' %}" class="logo">
+        <span class="logo-icon">🏍</span>
+        MOTOS <span>LUJO</span>
+    </a>
+
+    <nav>
+        <a href="{% url 'inicio' %}" class="{% if request.resolver_match.url_name == 'inicio' %}seleccionado{% endif %}"> Inicio</a>
+        <a href="{% url 'lista_productos' %}"> Productos</a>
+        <a href="{% url 'lista_categorias' %}"> Categorías</a>
+        <a href="{% url 'lista_clientes' %}"> Clientes</a>
+        <a href="{% url 'lista_venta' %}">Ventas</a>
+        <a href="{% url 'lista_detalle_ventas' %}"> Detalle de venta</a>
+        <a href="{% url 'api_motos' %}"> API motos</a>
+    </nav>
+
+   
+</header>
+
+{% block portada %}{% endblock %}
+
+<main class="contenido">
+    {% block contenido %}{% endblock %}
+</main>
+
+<footer class="footer">
+    <a href="{% url 'inicio' %}" class="logo">
+        🏍 MOTOS <span>LUJO</span>
+    </a>
+    <p>Pasión por las motos. Compromiso con la calidad.</p>
+    <p class="copyright">© 2026 Tienda Motos Lujo. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
+

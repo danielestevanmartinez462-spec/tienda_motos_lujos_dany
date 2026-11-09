@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motos Lujo</title>
+
+    <link rel="stylesheet" href="{% static 'productos/css/api_motos.css' %}?v=10">
+</head>
+
+<body>
+
+<header>
+    <h1>MOTOS LUJO</h1>
+    <a href="{% url 'inicio' %}">Volver al inicio</a>
+</header>
+
+<section class="portada">
+    <div class="texto-portada">
+        <span>BIENVENIDO A MOTOS LUJO</span>
+        <h2>Marcas de<br><span>motocicletas</span></h2>
+        <p>Descubre el mundo de las dos ruedas.</p>
+    </div>
+
+    <div class="foto-portada">
+        <img
+            src="https://www.yamahamotorsports.com/media/images_products/2025-25-yzf-r9/1920px/R9-hero-2.jpg.webp"
+            alt="Motocicleta deportiva Yamaha azul">
+    </div>
+</section>
+
+<main>
+
+    <h2>Catálogo de motocicletas</h2>
+    <p class="descripcion">Conoce diferentes fabricantes destacados.</p>
+      
+    <div class="contenedor-buscador">
+    <div class="buscador">
+        <span></span>
+        <input
+            type="search"
+            id="buscarMoto"
+            placeholder="Buscar motos por nombre, marca o código..."
+            autocomplete="off">
+    </div>
+</div>
+
+    {% if error %}
+        <p class="mensaje-error">{{ error }}</p>
+    {% else %}
+
+    <section class="marcas" id="catalogoMotos">
+
+        {% for moto in motos|slice:":9" %}
+
+        <article class="tarjeta">
+
+            {% if forloop.counter == 1 %}
+                <img src="https://www.yamahamotorsports.com/media/images_products/2025-25-yzf-r9/1920px/R9-hero-2.jpg.webp" alt="Moto deportiva">
+            {% elif forloop.counter == 2 %}
+                <img src="https://wallpapercrafter.com/th8007/1735376-Motorcycles-Kawasaki-blue-mode-of-transportation.jpg" alt="Moto deportiva azul">
+            {% elif forloop.counter == 3 %}
+                <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=85" alt="Motocicleta">
+            {% elif forloop.counter == 4 %}
+                <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=85" alt="Motocicleta">
+            {% elif forloop.counter == 5 %}
+                <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=800&q=85" alt="Motocicleta">
+            {% elif forloop.counter == 6 %}
+                <img src="https://www.yamahamotorsports.com/media/images_products/2025-25-yzf-r9/1920px/R9-hero-2.jpg.webp" alt="Moto deportiva">
+            {% elif forloop.counter == 7 %}
+                <img src="https://wallpapercrafter.com/th8007/1735376-Motorcycles-Kawasaki-blue-mode-of-transportation.jpg" alt="Moto deportiva">
+            {% elif forloop.counter == 8 %}
+                <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=85" alt="Motocicleta">
+            {% else %}
+                <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=800&q=85" alt="Motocicleta">
+            {% endif %}
+
+            <div class="contenido">
+                <h3>{{ moto.MakeName }}</h3>
+                <p>Código: {{ moto.MakeId }}</p>
+                <p>Tipo: {{ moto.VehicleTypeName }}</p>
+            </div>
+
+        </article>
+
+        {% empty %}
+            <p class="mensaje-vacio">No hay marcas disponibles.</p>
+        {% endfor %}
+
+    </section>
+
+    <p id="sinResultados" style="display:none; text-align:center; padding:30px;">
+        No se encontraron motocicletas con esa búsqueda.
+    </p>
+
+    {% endif %}
+
+</main>
+
+<section class="seccion-accesorios">
+
+    <h2>Accesorios para motociclistas</h2>
+    <p class="descripcion">
+        Equípate y disfruta cada recorrido con protección y estilo.
+    </p>
+
+    <div class="accesorios">
+
+        <article class="tarjeta-accesorio">
+            <img
+                src="https://static.wixstatic.com/media/04560e_db78da0e7556461d97e972e6f69c2af4~mv2.jpg/v1/fill/w_1000%2Ch_1000%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_auto/04560e_db78da0e7556461d97e972e6f69c2af4~mv2.jpg"
+                alt="Casco de motocicleta y guantes">
+            <div class="contenido">
+                <h3>Cascos</h3>
+                <p>Protección y seguridad para tus recorridos.</p>
+            </div>
+        </article>
+
+        <article class="tarjeta-accesorio">
+            <img
+                src="https://contenu.nyc3.cdn.digitaloceanspaces.com/journalist/4f52dc1f-49b0-4300-ac1c-a4cd9d7a3527/thumbnail.jpeg"
+                alt="Guantes de motociclista">
+            <div class="contenido">
+                <h3>Guantes</h3>
+                <p>Comodidad y protección para tus manos.</p>
+            </div>
+        </article>
+
+        <article class="tarjeta-accesorio">
+            <img
+                src="https://yigitlermotosiklet.com/cdn/shop/collections/ekipman.png?v=1772406361"
+                alt="Accesorios y equipamiento para motos">
+            <div class="contenido">
+                <h3>Accesorios</h3>
+                <p>Chaquetas, botas y equipamiento para motociclistas.</p>
+            </div>
+        </article>
+
+    </div>
+
+</section>
+
+<footer>
+    <h2>MOTOS LUJO</h2>
+    <p>Pasión por las motocicletas.</p>
+    <p>© 2026 Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    const buscador = document.getElementById("buscarMoto");
+    const tarjetas = document.querySelectorAll("#catalogoMotos .tarjeta");
+    const sinResultados = document.getElementById("sinResultados");
+
+    if (buscador) {
+        buscador.addEventListener("input", function () {
+
+            const texto = this.value.toLowerCase().trim();
+            let encontrados = 0;
+
+            tarjetas.forEach(function (tarjeta) {
+
+                const contenido = tarjeta.textContent.toLowerCase();
+
+                if (contenido.includes(texto)) {
+                    tarjeta.style.display = "";
+                    encontrados++;
+                } else {
+                    tarjeta.style.display = "none";
+                }
+
+            });
+
+            if (sinResultados) {
+                sinResultados.style.display =
+                    encontrados === 0 ? "block" : "none";
+            }
+
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+{% extends 'tienda/base.html' %}
+
+{% block titulo %}Categorías | Motos Lujo{% endblock %}
+
+{% block contenido %}
+<section class="seccion-listado">
+
+    <div class="encabezado-listado">
+        <div>
+            <p class="marca">ORGANIZA TU CATÁLOGO</p>
+            <h1 class="titulo-seccion">Categorías</h1>
+            <p>Administra las categorías de motocicletas.</p>
+        </div>
+
+        <a href="{% url 'crear_categoria' %}" class="boton">
+            + Nueva categoría
+        </a>
+    </div>
+
+    <div class="tabla-contenedor">
+        <div class="tabla-scroll">
+            <table class="tabla-ventas">
+                <thead>
+                    <tr>
+                        <th>N.º</th>
+                        <th>Nombre de la categoría</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for c in lista %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ c.nombre }}</td>
+                        <td>
+                            <div class="acciones">
+                                <a href="{% url 'editar_categoria' c.pk %}" class="enlace-editar">
+                                    Editar
+                                </a>
+
+                                <a href="{% url 'eliminar_categoria' c.pk %}" class="enlace-eliminar">
+                                    Eliminar
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="sin-datos">
+                            Todavía no hay categorías registradas.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

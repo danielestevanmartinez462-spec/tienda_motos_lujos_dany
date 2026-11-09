@@ -1,0 +1,67 @@
+{% extends 'tienda/base.html' %}
+{% load static %}
+
+{% block titulo %}Inicio | Motos Lujo{% endblock %}
+
+{% block portada %}
+<section class="portada-nueva">
+
+    <div class="texto-nuevo">
+        <p class="marca">BIENVENIDO A MOTOS LUJO</p>
+        <h1>Motos de ensueño,<br><span>al alcance de ti</span></h1>
+        <p>Calidad, estilo y rendimiento en un solo lugar.</p>
+        <a href="{% url 'lista_productos' %}" class="boton">Explorar productos →</a>
+    </div>
+
+    <div class="imagen-nueva">
+        <img src="https://www.yamahamotorsports.com/media/images_products/2025-25-yzf-r9/1920px/R9-hero-2.jpg.webp" alt="Moto deportiva azul">
+    </div>
+
+</section>
+
+<section class="beneficios">
+    <div> <strong>Compra segura</strong><small>Tus compras protegidas</small></div>
+    <div> <strong>Envíos rápidos</strong><small>Recibe en todo el país</small></div>
+    <div> <strong>Atención 24/7</strong><small>Siempre contigo</small></div>
+    <div> <strong>Mejor calidad</strong><small>Rendimiento garantizado</small></div>
+</section>
+{% endblock %}
+
+{% block contenido %}
+<section class="productos-inicio">
+
+    <h2>── Nuestros productos ──</h2>
+
+    <div class="productos-grid">
+
+        <a href="{% url 'lista_productos' %}" class="producto-card">
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=600&q=85" alt="Motocicleta">
+            <h3>Motos deportivas</h3>
+            <p>Velocidad y estilo</p>
+            <span>Ver productos →</span>
+        </a>
+
+        <a href="{% url 'lista_productos' %}" class="producto-card">
+            <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=600&q=85" alt="Motocicleta">
+            <h3>Motos de lujo</h3>
+            <p>Diseño y elegancia</p>
+            <span>Ver productos →</span>
+        </a>
+
+        <a href="{% url 'lista_productos' %}" class="producto-card">
+            <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=600&q=85" alt="Motocicleta">
+            <h3>Motos modernas</h3>
+            <p>Potencia y tecnología</p>
+            <span>Ver productos →</span>
+        </a>
+
+        <a href="{% url 'lista_productos' %}" class="producto-card">
+            <img src="https://images.unsplash.com/photo-1558981359-219d6364c9c8?auto=format&fit=crop&w=600&q=85" alt="Motocicleta">
+            <h3>Gran rendimiento</h3>
+            <p>Calidad garantizada</p>
+            <span>Ver productos →</span>
+        </a>
+
+    </div>
+</section>
+{% endblock %}
